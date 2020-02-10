@@ -112,13 +112,15 @@ export function msgToBotonic(msg, customMessageTypes, decorator) {
     )
   } else if (msg.type === 'audio') {
     return decorate(
-        'audio',<Audio
+      'audio',
+      <Audio
         {...msg}
         src={msg.data.audio != undefined ? msg.data.audio : msg.data}
       />
     )
   } else if (msg.type === 'document') {
-    return decorate('document',
+    return decorate(
+      'document',
       <Document
         {...msg}
         src={msg.data.document != undefined ? msg.data.document : msg.data}
@@ -132,11 +134,13 @@ export function msgToBotonic(msg, customMessageTypes, decorator) {
     let buttons = buttons_parse(msg.buttons)
     return (
       <>
-        decorate('text', <Text {...msg}>
-          {msg.text}
-          {buttons}
-        </Text>
-        )
+        {decorate(
+          'text',
+          <Text {...msg}>
+            {msg.text}
+            {buttons}
+          </Text>
+        )}
       </>
     )
   }
